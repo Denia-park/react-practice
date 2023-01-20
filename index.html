@@ -16,17 +16,20 @@
             // => myFavFood = "tomato", mySecondFavFood = "potato"
             // == const myFavFood = food[0]
 
-            const [counter, setCounter] = React.useState(0);
-            const onClick = () => {
-                // setCounter(counter + 1);
-                setCounter(current => current + 1); // more Safe
-            };
+            const [minutes, setMinutes] = React.useState();
 
-            return (<div>
-                    <h3>Total clicks: {counter}</h3>
-                    <button onClick={onClick}> Click me</button>
-                </div>
-            );
+            const onChange = (event) => {
+                setMinutes(event.target.value);
+            }
+
+            return <div>
+                <h1 className="hi">Super Converter</h1>
+                <label for="minutes">Minutes</label>
+                <input value={minutes} id="minutes" type="number" placeholder="Minutes" onChange={onChange}/>
+                <h4>You want to convert {minutes}</h4>
+                <label for="hours">Hours</label>
+                <input id="hours" type="number" placeholder="Hours"/>
+            </div>;
         }
 
         ReactDOM.render(<App/>, root);
