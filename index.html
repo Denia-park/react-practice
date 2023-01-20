@@ -8,24 +8,24 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
         const root = document.getElementById('root');
-        let counter = 0;
 
-        function countUp() {
-            counter++;
-            render();
+        function App() {
+            //※ useState 쓸 때 앞에 [] 를 쓰는 이유 설명, JS에는 이런 문법이 있다.
+            //const food = ["tomato", "potato"]
+            //const [myFavFood, mySecondFavFood] = food;
+            // => myFavFood = "tomato", mySecondFavFood = "potato"
+            // == const myFavFood = food[0]
+
+            const [counter, modifier] = React.useState(0);
+
+            return (<div>
+                    <h3>Total clicks: 0</h3>
+                    <button> Click me</button>
+                </div>
+            );
         }
 
-        function render() {
-            ReactDOM.render(<Container/>, root);
-        }
-
-        const Container = () => (<div>
-                <h3>Total clicks: {counter}</h3>
-                <button onClick={countUp}> Click me</button>
-            </div>
-        );
-        
-        render();
+        ReactDOM.render(<App/>, root);
     </script>
 </html>
 
