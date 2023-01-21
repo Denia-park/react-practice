@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
     <body>
         <div id="root"></div>
@@ -7,7 +7,7 @@
     <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script type="text/babel">
-        const root = document.getElementById('root');
+        const root = document.getElementById('root')
 
         function App() {
             //※ useState 쓸 때 앞에 [] 를 쓰는 이유 설명, JS에는 이런 문법이 있다.
@@ -16,24 +16,30 @@
             // => myFavFood = "tomato", mySecondFavFood = "potato"
             // == const myFavFood = food[0]
 
-            const [minutes, setMinutes] = React.useState();
+            const [minutes, setMinutes] = React.useState()
 
             const onChange = (event) => {
-                setMinutes(event.target.value);
+                setMinutes(event.target.value)
             }
 
-            return <div>
-                <h1 className="hi">Super Converter</h1>
-                <label for="minutes">Minutes</label>
-                <input value={minutes} id="minutes" type="number" placeholder="Minutes" onChange={onChange}/>
-                <h4>You want to convert {minutes}</h4>
-                <label for="hours">Hours</label>
-                <input id="hours" type="number" placeholder="Hours"/>
-            </div>;
+            return (
+                <div>
+                    <h1 className="hi">Super Converter</h1>
+                    <label for="minutes">Minutes</label>
+                    <input
+                        value={minutes}
+                        id="minutes"
+                        type="number"
+                        placeholder="Minutes"
+                        onChange={onChange}
+                    />
+                    <h4>You want to convert {minutes}</h4>
+                    <label for="hours">Hours</label>
+                    <input id="hours" type="number" placeholder="Hours" />
+                </div>
+            )
         }
 
-        ReactDOM.render(<App/>, root);
+        ReactDOM.render(<App />, root)
     </script>
 </html>
-
-
