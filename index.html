@@ -17,7 +17,7 @@
             // == const myFavFood = food[0]
 
             const [amount, setAmount] = React.useState(0)
-            const [flipped, setFlipped] = React.useState(false)
+            const [inverted, setInverted] = React.useState(false)
             // const [hours, setHours] = React.useState(false)
 
             const onChange = (event) => {
@@ -25,9 +25,9 @@
             }
 
             const reset = () => setAmount(0)
-            const onFlip = () => {
+            const onInvert = () => {
                 reset()
-                setFlipped((cur) => !cur)
+                setInverted((cur) => !cur)
             }
 
             return (
@@ -36,27 +36,27 @@
                     <div>
                         <label for="minutes">Minutes</label>
                         <input
-                            value={flipped ? amount * 60 : amount}
+                            value={inverted ? amount * 60 : amount}
                             id="minutes"
                             type="number"
                             placeholder="Minutes"
                             onChange={onChange}
-                            disabled={flipped}
+                            disabled={inverted}
                         />
                     </div>
                     <div>
                         <label for="hours">Hours</label>
                         <input
-                            value={flipped ? amount : Math.round(amount / 60)}
+                            value={inverted ? amount : Math.round(amount / 60)}
                             id="hours"
                             type="number"
                             placeholder="Hours"
                             onChange={onChange}
-                            disabled={!flipped}
+                            disabled={!inverted}
                         />
                     </div>
                     <button onClick={reset}>Reset</button>
-                    <button onClick={onFlip}>Flip</button>
+                    <button onClick={onInvert}>{inverted ? 'Turn back' : 'Invert'}</button>
                 </div>
             )
         }
