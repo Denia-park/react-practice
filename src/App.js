@@ -1,5 +1,20 @@
 import { useEffect, useState } from 'react'
 
+function Hello() {
+    function byFn() {
+        console.log('Bye :(')
+    }
+
+    function hyFn() {
+        console.log('Hello :)')
+        return byFn() // Cleanup function
+    }
+
+    useEffect(hyFn, [])
+
+    return <h1>Hello</h1>
+}
+
 function App() {
     const [count, setCount] = useState(0)
     const [keyword, setKeyword] = useState('')
@@ -22,7 +37,6 @@ function App() {
     useEffect(() => {
         console.log('i run when "keyword && count" changes.')
     }, [keyword, count])
-
     return (
         <div className="App">
             <input value={keyword} onChange={onChange} type="text" placeholder={'Search here...'} />
