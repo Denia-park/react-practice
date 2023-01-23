@@ -27,8 +27,16 @@ function App() {
                 />
                 <button>Add To Do</button>
             </form>
+            <hr />
+            <ul>
+                {toDos.map((item, index) => (
+                    <li key={index}>{item}</li>
+                ))}
+            </ul>
         </div>
     )
+    //jsx 안에서 List가 있으면 해당 List의 내용을 차례차례 다 보여준다.
+    //{[<h1 key={1}>1</h1>, <h1 key={2}>2</h1>, <h1 key={3}>3</h1>]} => h1 이 3개가 나타난다.
 }
 
 export default App
