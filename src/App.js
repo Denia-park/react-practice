@@ -1,47 +1,32 @@
-import { useEffect, useState } from 'react'
-
-function Hello() {
-    function byFn() {
-        console.log('Bye :(')
-    }
-
-    function hyFn() {
-        console.log('Hello :)')
-        return byFn() // Cleanup function
-    }
-
-    useEffect(hyFn, [])
-
-    return <h1>Hello</h1>
-}
+import { useState } from 'react'
 
 function App() {
-    const [count, setCount] = useState(0)
-    const [keyword, setKeyword] = useState('')
-    const onChange = (event) => {
-        setKeyword(event.target.value)
+    const [toDo, setToDo] = useState('')
+    const [toDos, setToDos] = useState([])
+    const onChange = (event) => setToDo(event.target.value)
+    const onSubmit = (event) => {
+        event.preventDefault()
+        if (toDo === '') {
+            return
+        }
+
+        //JS에서 ...[A,B,C]을 하면 기존 Array의 요소들을 모두 꺼낸다.
+        setToDos((currentArray) => [toDo, ...currentArray])
+        setToDo('')
     }
-    const onClick = () => {
-        setCount((prevState) => prevState + 1)
-    }
-    console.log('i run all the time')
-    useEffect(() => {
-        console.log('i run only once')
-    }, []) // 처음에 render 될 때 딱 1번만 실행되야하는 함수를 넣자.
-    useEffect(() => {
-        console.log('i run when "keyword" changes.')
-    }, [keyword])
-    useEffect(() => {
-        console.log('i run when "count" changes.')
-    }, [count])
-    useEffect(() => {
-        console.log('i run when "keyword && count" changes.')
-    }, [keyword, count])
+    console.log(toDos)
     return (
-        <div className="App">
-            <input value={keyword} onChange={onChange} type="text" placeholder={'Search here...'} />
-            <h1>{count}</h1>
-            <button onClick={onClick}>Click me</button>
+        <div>
+            <h1>My To Dos ({toDos.length})</h1>
+            <form onSubmit={onSubmit}>
+                <input
+                    onChange={onChange}
+                    value={toDo}
+                    type={'text'}
+                    placeholder={'Write your to do...'}
+                />
+                <button>Add To Do</button>
+            </form>
         </div>
     )
 }
